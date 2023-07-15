@@ -176,28 +176,83 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 require("./styles.css");
-var submitButton = document.getElementById("submit-data");
-var table = document.getElementById("table1").getElementsByTagName("tbody")[0];
-var emptyButton = document.getElementById("empty-table");
-submitButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  var username = document.getElementById("input-username").value;
-  var email = document.getElementById("input-address").value;
-  var address = document.getElementById("input-address").value;
-  var admin = document.getElementById("input-admin").checked;
-  var newRow = table.insertRow();
-  var usernameCell = newRow.insertCell();
-  usernameCell.textContent = username;
-  var emailCell = newRow.insertCell();
-  emailCell.textContent = email;
-  var addressCell = newRow.insertCell();
-  addressCell.textContent = address;
-  var adminCell = newRow.insertCell();
-  adminCell.textContent = admin ? "X" : '-';
-});
-emptyButton.addEventListener("click", function (event) {
-  event.preventDefault();
-});
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+if (document.readyState !== "loading") {
+  console.log("Document is ready!");
+  initializeCode();
+} else {
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("Document is ready after waiting!");
+    initializeCode();
+  });
+}
+function initializeCode() {
+  var submitButton = document.getElementById("submit-data");
+  var tableBody = document.querySelector('#table1 tbody');
+  var emptyButton = document.getElementById("empty-table");
+  submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    var username = document.getElementById("input-username").value;
+    var email = document.getElementById("input-email").value;
+    var address = document.getElementById("input-address").value;
+    var admin = document.getElementById("input-admin").checked;
+    var file = document.getElementById("input-image").files[0];
+    var imgSrc = "";
+    if (file) {
+      imgSrc = URL.createObjectURL(file);
+    }
+    var img = document.createElement("img");
+    img.src = imgSrc;
+    img.height = 64;
+    img.width = 64;
+    var existingUsername = false;
+    var existingRow;
+    var _iterator = _createForOfIteratorHelper(tableBody.rows),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var row = _step.value;
+        if (row.cells[0].textContent === username) {
+          existingUsername = true;
+          existingRow = row;
+          break;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    if (existingUsername) {
+      existingRow.cells[1].textContent = email;
+      existingRow.cells[2].textContent = address;
+      existingRow.cells[3].textContent = admin ? "X" : '-';
+      existingRow.cells[4].innerHTML = "";
+      existingRow.cells[4].apppendChild(img);
+    } else {
+      var newRow = tableBody.insertRow();
+      var usernameCell = newRow.insertCell();
+      usernameCell.textContent = username;
+      var emailCell = newRow.insertCell();
+      emailCell.textContent = email;
+      var addressCell = newRow.insertCell();
+      addressCell.textContent = address;
+      var adminCell = newRow.insertCell();
+      adminCell.textContent = admin ? "X" : '-';
+      var imgCell = newRow.insertCell();
+      imgCell.apppendChild(img);
+    }
+  });
+  emptyButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    while (tableBody.firstChild) {
+      tableBody.firstChild.remove();
+    }
+  });
+}
+;
 },{"./styles.css":"src/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
