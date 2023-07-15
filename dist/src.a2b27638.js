@@ -176,6 +176,28 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 require("./styles.css");
+var submitButton = document.getElementById("submit-data");
+var table = document.getElementById("table1").getElementsByTagName("tbody")[0];
+var emptyButton = document.getElementById("empty-table");
+submitButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  var username = document.getElementById("input-username").value;
+  var email = document.getElementById("input-address").value;
+  var address = document.getElementById("input-address").value;
+  var admin = document.getElementById("input-admin").checked;
+  var newRow = table.insertRow();
+  var usernameCell = newRow.insertCell();
+  usernameCell.textContent = username;
+  var emailCell = newRow.insertCell();
+  emailCell.textContent = email;
+  var addressCell = newRow.insertCell();
+  addressCell.textContent = address;
+  var adminCell = newRow.insertCell();
+  adminCell.textContent = admin ? "X" : '-';
+});
+emptyButton.addEventListener("click", function (event) {
+  event.preventDefault();
+});
 },{"./styles.css":"src/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -201,7 +223,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40833" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39041" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

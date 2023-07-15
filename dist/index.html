@@ -12,9 +12,14 @@
     
 
 
-    <table>
+    <table id="table1">
         <thead>
-          <tr><th>Username</th><th>Email</th><th>Address</th><th>Admin</th></tr>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Admin</th>
+          </tr>
         </thead>
         <tbody>
           <tr><td>Webmaster</td><td>example@email.com</td><td>Demoland 123</td><td>X</td></tr>
@@ -23,6 +28,18 @@
         </tbody>
     </table>
 
+    <fieldset>
+      <label for="input-username">Username:</label>
+      <input type="text" name="input-username" id="input-username" placeholder="username"><br>
+      <label for="input-email">Email:</label>
+      <input type="text" name="input-email" id="input-email" placeholder="email"><br>
+      <label for="input-address">Address:</label>
+      <input type="text" name="input-address" id="input-address" placeholder="address"><br>
+      <label for="input-admin">Admin:</label>
+      <input type="checkbox" name="input-admin" id="input-admin"><br>
+      <button id="submit-data">Submit data</button>
+      <button id="empty-table">Empty table</button>
+    </fieldset>
 
   </body>
 </html>
