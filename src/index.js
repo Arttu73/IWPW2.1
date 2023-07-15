@@ -50,7 +50,7 @@ function initializeCode() {
             existingRow.cells[2].textContent = address;
             existingRow.cells[3].textContent = admin ? "X" : '-';
             existingRow.cells[4].innerHTML = "";
-            existingRow.cells[4].apppendChild(img);
+            existingRow.cells[4].appendChild(img);
         } else {
         const newRow = tableBody.insertRow();
         
@@ -67,7 +67,7 @@ function initializeCode() {
         adminCell.textContent = admin ? "X" : '-';
 
         const imgCell = newRow.insertCell();
-        imgCell.apppendChild(img);
+        imgCell.appendChild(img);
         }
         
     });
