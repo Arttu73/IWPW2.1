@@ -230,7 +230,7 @@ function initializeCode() {
       existingRow.cells[2].textContent = address;
       existingRow.cells[3].textContent = admin ? "X" : '-';
       existingRow.cells[4].innerHTML = "";
-      existingRow.cells[4].apppendChild(img);
+      existingRow.cells[4].appendChild(img);
     } else {
       var newRow = tableBody.insertRow();
       var usernameCell = newRow.insertCell();
@@ -242,7 +242,7 @@ function initializeCode() {
       var adminCell = newRow.insertCell();
       adminCell.textContent = admin ? "X" : '-';
       var imgCell = newRow.insertCell();
-      imgCell.apppendChild(img);
+      imgCell.appendChild(img);
     }
   });
   emptyButton.addEventListener("click", function (event) {
