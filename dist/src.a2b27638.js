@@ -177,15 +177,16 @@ module.hot.accept(reloadCSS);
 
 require("./styles.css");
 var submitButton = document.getElementById("submit-data");
-var table = document.getElementById("table1").getElementsByTagName("tbody")[0];
+var table = document.getElementById("table1");
+var tableBody = table.getElementsByTagName("tbody")[0];
 var emptyButton = document.getElementById("empty-table");
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
-  var username = document.getElementById("input-username").value;
-  var email = document.getElementById("input-address").value;
+  var username = document.getElementById("inpemuilname").value;
+  var email = document.getElementById("input-email").value;
   var address = document.getElementById("input-address").value;
-  var admin = document.getElementById("input-admin").checked;
-  var newRow = table.insertRow();
+  var admin = document.getElementById("input-admin");
+  var newRow = tableBody.insertRow();
   var usernameCell = newRow.insertCell();
   usernameCell.textContent = username;
   var emailCell = newRow.insertCell();
